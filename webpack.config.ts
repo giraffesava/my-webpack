@@ -1,27 +1,41 @@
 import {Configuration} from 'webpack'
 import type { Configuration as DevServerConfiguration } from "webpack-dev-server";
 import * as path from "path";
-
+import { TsconfigPathsPlugin } from 'tsconfig-paths-webpack-plugin'
 
 const devServer: DevServerConfiguration = {
     liveReload: true,
     client: {
         progress: true, // percentage
     },
-    historyApiFallback: true, // Helps to avoid using react-router 404 request, e.x
-    port: 4000,
+    historyApiFallback: true, // Helps to avoid using react-router 404 request error
+    port: 3000,
     open: true,
 };
 
-const webpackConfig: Configuration ={
+const webpackConfig: Configuration = {
+    mode: 'development', //
     entry: './src/index.tsx',
     devServer,
+    //devtool: 'inline-source-map',
+    resolve: {
+        extensions: ['.ts', '.tsx', '.js'],
+        plugins: [new TsconfigPathsPlugin()] // add alias
+    },
     output: {
-        path: path.join(__dirname, '/dist'),
-        filename: 'build.js',
+        path: path.join(__dirname, 'dist'),
+        filename: 'bundle.js',
         publicPath: '/',
     },
-
+    module: {
+        rules: [
+            {
+                test: /\.tsx?$/,
+                use: 'ts-loader',
+                exclude: /node_modules/,
+            },
+        ],
+    },
 }
 
 export default webpackConfig
