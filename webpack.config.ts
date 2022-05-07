@@ -2,6 +2,7 @@ import {Configuration} from 'webpack'
 import type { Configuration as DevServerConfiguration } from "webpack-dev-server";
 import * as path from "path";
 import { TsconfigPathsPlugin } from 'tsconfig-paths-webpack-plugin'
+import HtmlWebpackPlugin from 'html-webpack-plugin'
 
 const devServer: DevServerConfiguration = {
     liveReload: true,
@@ -36,6 +37,11 @@ const webpackConfig: Configuration = {
             },
         ],
     },
+    plugins: [
+        new HtmlWebpackPlugin({
+            template: './public/index.html',
+        }),
+    ]
 }
 
 export default webpackConfig
