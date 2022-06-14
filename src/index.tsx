@@ -1,9 +1,20 @@
-import React from "react";
-import { createRoot } from "react-dom/client";
+import React from 'react'
+import { createRoot } from 'react-dom/client'
+import { createGlobalStyle } from 'styled-components'
+import reset from 'styled-reset'
 
-import App from "./App";
+import Main from './components/Main/Main'
 
-const container = document.getElementById("root");
-const root = createRoot(container!);
+const GlobalStyle = createGlobalStyle`
+  ${reset}
+`
 
-root.render(<App />);
+const container = document.getElementById('root')
+const root = createRoot(container)
+
+root.render(
+  <>
+    <GlobalStyle />
+    <Main />
+  </>,
+)
