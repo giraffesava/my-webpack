@@ -3,12 +3,10 @@ import { Wrapper, Title } from './Main.style'
 
 interface IProps {}
 
-const Main: FC<IProps> = () => {
-  return (
-    <Wrapper>
-      <Title>My webpack</Title>
-    </Wrapper>
-  )
-}
+const Main: FC<IProps> = () => (
+  <Wrapper>
+    <Title>My webpack</Title>
+  </Wrapper>
+)
 
 export default Main
